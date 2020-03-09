@@ -14,15 +14,23 @@
 // Adjust this code according to what you find for Processor objects in your own DSDT.
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_XCPM", 0)
+DefinitionBlock ("", "SSDT", 1, "APPLE ", "CpuPm", 0x00001000)
 {
 #endif
-    Method(_PR.CPU0._DSM, 4)
+    Method (_PR.CPU0._DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
     {
-        If (!Arg2) { Return (Buffer() { 0x03 } ) }
-        Return (Package()
+        If (LEqual (Arg2, Zero))
         {
-            "plugin-type", 1
+            Return (Buffer (One)
+            {
+                 0x03                                           
+            })
+        }
+
+        Return (Package (0x02)
+        {
+            "plugin-type", 
+            One
         })
     }
 #ifndef NO_DEFINITIONBLOCK
