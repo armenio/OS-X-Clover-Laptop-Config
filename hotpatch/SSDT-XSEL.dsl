@@ -1,7 +1,7 @@
 // Disabling XSEL
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_XSEL", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "XSEL", 0x00000000)
 {
 #endif
     // In DSDT, native XSEL is renamed ZSEL

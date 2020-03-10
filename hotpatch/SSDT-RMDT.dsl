@@ -5,7 +5,7 @@
 // hotpatch SSDTs or even patched OEM ACPI files.
 //
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_RMDT", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "RMDT", 0x00000000)
 {
 #endif
     Device(RMDT)

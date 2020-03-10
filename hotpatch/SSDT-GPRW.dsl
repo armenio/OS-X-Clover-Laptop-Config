@@ -1,7 +1,7 @@
 // For solving instant wake by hooking GPRW or UPRW
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_GPRW", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "GPRW", 0x00000000)
 {
 #endif
     External(XPRW, MethodObj)

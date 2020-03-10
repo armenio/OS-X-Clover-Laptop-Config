@@ -12,7 +12,7 @@
 #define COFFEELAKE_PWMMAX 0xffff
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "APPLE ", "PNLF", 0x00001000)
+DefinitionBlock ("", "SSDT", 2, "HACK", "PNLF", 0x00000000)
 {
 #endif
     External(RMCF.BKLT, IntObj)

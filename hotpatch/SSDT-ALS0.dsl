@@ -1,7 +1,7 @@
 // Fake ambient light sensor device
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "APPLE ", "ALS0", 0x00001000)
+DefinitionBlock ("", "SSDT", 2, "HACK", "ALS0", 0x00000000)
 {
 #endif
     Device (_SB.ALS0)

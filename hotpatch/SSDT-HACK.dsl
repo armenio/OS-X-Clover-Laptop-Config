@@ -1,6 +1,6 @@
 // including all SSDTs with NO_DEFINITIONBLOCK
 
-DefinitionBlock("", "DSDT", 2, "APPLE ", "PmFix", 0x00001000)
+DefinitionBlock ("", "SSDT", 2, "HACK", "HACK", 0x00000000)
 {
     #define NO_DEFINITIONBLOCK
     #include "SSDT-RMCF.dsl"

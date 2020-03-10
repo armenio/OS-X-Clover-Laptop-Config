@@ -1,7 +1,7 @@
 // configuration data for other SSDTs in this pack
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_RMCF", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "RMCF", 0x00000000)
 {
 #endif
     Device(RMCF)

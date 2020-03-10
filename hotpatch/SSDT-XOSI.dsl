@@ -1,7 +1,7 @@
 // Override for host defined _OSI to handle "Darwin"...
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 1, "APPLE ", "XOSI", 0x00001000)
+DefinitionBlock ("", "SSDT", 2, "HACK", "XOSI", 0x00000000)
 {
 #endif
     // All _OSI calls in DSDT are routed to XOSI...
