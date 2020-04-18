@@ -23,6 +23,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "_LANCPRW", 0)
             If (CondRefOf(\RMCF.DWOU)) { If (!\RMCF.DWOU) { Break }}
             // either RMCF.DWOU not provided, or is non-zero, patch is enabled
             Local0[1] = 0
+            Break
         }
         Return(Local0)
     }
