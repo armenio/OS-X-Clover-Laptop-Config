@@ -21,6 +21,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "UPRW", 0)
             // either RMCF.DWOU not provided, or is non-zero, patch is enabled
             If (0x6d == Arg0) { Return (Package () { 0x6d, 0, }) }
             If (0x0d == Arg0) { Return (Package () { 0x0d, 0, }) }
+            Break
         }
         Return (XPRW (Arg0, Arg1))
     }
