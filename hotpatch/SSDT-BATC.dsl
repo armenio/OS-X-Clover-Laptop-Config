@@ -46,11 +46,6 @@
 // Changing to BATC:
 //   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 42 45 43 5F 5F 42 41 54 43 0A 01
 //
-// You may find that 0x01 is optimized:
-//   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 5F 45 43 5F 5F 42 41 54 30 01
-// Similarly, 0x00 can be optimized:
-//   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 5F 45 43 5F 5F 42 41 54 30 00
-//
 
 DefinitionBlock ("", "SSDT", 2, "hack", "BATC", 0)
 {
