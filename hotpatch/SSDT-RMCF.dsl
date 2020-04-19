@@ -89,7 +89,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "RMCF", 0)
         // BKLT: Backlight control type
         //
         // bit0=0: Using IntelBacklight.kext
-        // bit0=1: Using AppleBacklight.kext + AppleBacklightInjector.kext or AppleBacklightFixup.kext
+        // bit0=1: Using AppleBacklight.kext + WhateverGreen.kext
         // bit1=1: do not set LEVW
         // bit2=1: set GRAN
         // bit3=1: prevent PWM initialization (eg. don't set PWMMax/PWMDuty)
