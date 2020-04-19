@@ -1,22 +1,22 @@
 // For solving instant wake by hooking GPRW
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "LANCPRW", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "EH02PRW", 0)
 {
 #endif
     // External (ZPRW, MethodObj)
     External (RMCF.DWOU, IntObj)
 
-    // In DSDT, native LANC._PRW is renamed ZPRW with Clover binpatch.
-    // As a result, calls to LANC._PRW land here.
+    // In DSDT, native EH02._PRW is renamed ZPRW with Clover binpatch.
+    // As a result, calls to EH02._PRW land here.
     // The purpose of this implementation is to avoid "instant wake"
     // by returning 0 in the second position (sleep state supported)
     // of the return package.
-    // LANC._PRW is renamed to ZPRW so we can replace it here
-    External (_SB.PCI0.LANC.ZPRW, MethodObj)
-    Method (_SB.PCI0.LANC._PRW)
+    // EH02._PRW is renamed to ZPRW so we can replace it here
+    External (_SB.PCI0.EH02.ZPRW, MethodObj)
+    Method (_SB.PCI0.EH02._PRW)
     {
-        Local0 = \_SB.PCI0.LANC.ZPRW ()
+        Local0 = \_SB.PCI0.EH02.ZPRW ()
         For (,,)
         {
             // when RMCF.DWOU is provided and is zero, patch disabled
