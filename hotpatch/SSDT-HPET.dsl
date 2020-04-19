@@ -44,20 +44,17 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "HPET", 0)
 
         If (!CondRefOf (\_SB.PCI0.LPCB.HPET._CRS))
         {
-            Method (_CRS, 0, Serialized)
+            Name (_CRS, ResourceTemplate ()
             {
-                Return (ResourceTemplate ()
-                {
-                    IRQNoFlags ()
-                        {0}
-                    IRQNoFlags ()
-                        {8}
-                    Memory32Fixed (ReadWrite,
-                        0xFED00000,         // Address Base
-                        0x00004000,         // Address Length
-                        )
-                })
-            }
+                IRQNoFlags ()
+                    {0}
+                IRQNoFlags ()
+                    {8}
+                Memory32Fixed (ReadWrite,
+                    0xFED00000,
+                    0x00004000,
+                    )
+            })
         }
     }
 #ifndef NO_DEFINITIONBLOCK
