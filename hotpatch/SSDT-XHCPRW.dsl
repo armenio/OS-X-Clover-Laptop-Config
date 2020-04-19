@@ -13,20 +13,24 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "XHCPRW", 0)
     // by returning 0 in the second position (sleep state supported)
     // of the return package.
     // XHC._PRW is renamed to ZPRW so we can replace it here
+    External (_SB_.PCI0.XHC, DeviceObj)
     External (_SB.PCI0.XHC.ZPRW, MethodObj)
 
-    Method (_SB.PCI0.XHC._PRW, 0, NotSerialized)
+    Scope (\_SB.PCI0.XHC)
     {
-        Local0 = \_SB.PCI0.XHC.ZPRW ()
-        For (,,)
+        Method (_PRW, 0, NotSerialized)
         {
-            // when RMCF.DWOU is provided and is zero, patch disabled
-            If (CondRefOf (\RMCF.DWOU)) { If (!\RMCF.DWOU) { Break }}
-            // either RMCF.DWOU not provided, or is non-zero, patch is enabled
-            Local0[1] = 0
-            Break
+            Local0 = \_SB.PCI0.XHC.ZPRW ()
+            For (,,)
+            {
+                // when RMCF.DWOU is provided and is zero, patch disabled
+                If (CondRefOf (\RMCF.DWOU)) { If (!\RMCF.DWOU) { Break }}
+                // either RMCF.DWOU not provided, or is non-zero, patch is enabled
+                Local0[1] = 0
+                Break
+            }
+            Return (Local0)
         }
-        Return (Local0)
     }
 #ifndef NO_DEFINITIONBLOCK
 }
