@@ -22,7 +22,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "PNLF", 0)
     External (RMCF.FBTP, IntObj)
 
     External (_SB.PCI0.IGPU, DeviceObj)
-    Scope (_SB.PCI0.IGPU)
+    Scope (\_SB.PCI0.IGPU)
     {
         OperationRegion (RMP3, PCI_Config, 0, 0x14)
     }

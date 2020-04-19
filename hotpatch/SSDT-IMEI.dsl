@@ -7,13 +7,13 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "IMEI", 0)
 #endif
     // setup PCI_Config for IGPU
     External (_SB.PCI0.IGPU, DeviceObj)
-    Scope (_SB.PCI0.IGPU) { OperationRegion (RMP2, PCI_Config, 2, 2) }
+    Scope (\_SB.PCI0.IGPU) { OperationRegion (RMP2, PCI_Config, 2, 2) }
 
     // Note: If your ACPI set (DSDT+SSDTs) already defines IMEI (or HECI),
     // remove this Device definition, swap for External below
     Device (_SB.PCI0.IMEI) { Name (_ADR, 0x00160000) }
     //External (_SB.PCI0.IMEI, DeviceObj)
-    Scope (_SB.PCI0.IMEI)
+    Scope (\_SB.PCI0.IMEI)
     {
         // deal with mixed system, HD3000/7-series, HD4000/6-series
         OperationRegion (RMP1, PCI_Config, 2, 2)

@@ -3,7 +3,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "ps2", 0)
 {
     // Change _SB.PCI0.LPC.KBD if your PS2 keyboard is at a different ACPI path
     External (_SB.PCI0.LPC.KBD, DeviceObj)
-    Scope (_SB.PCI0.LPC.KBD)
+    Scope (\_SB.PCI0.LPC.KBD)
     {
         // Select specific configuration in VoodooPS2Trackpad.kext
         Method (_SB.PCI0.LPCB.PS2K._DSM, 4)

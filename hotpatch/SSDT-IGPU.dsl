@@ -12,7 +12,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "IGPU", 0)
     External (RMCF.DAUD, IntObj)
 
     External (_SB.PCI0.IGPU, DeviceObj)
-    Scope (_SB.PCI0.IGPU)
+    Scope (\_SB.PCI0.IGPU)
     {
         // need the device-id from PCI_config to inject correct properties
         OperationRegion (RMP1, PCI_Config, 2, 2)

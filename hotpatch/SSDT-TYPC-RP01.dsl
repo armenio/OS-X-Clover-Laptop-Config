@@ -17,7 +17,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "TYPC", 0)
 	External (_SB.PCI0.RP01.PXSX, DeviceObj)    // (from opcode)
 
 	// USB-C
-	Scope (_SB.PCI0.RP01.PXSX) // UPSB
+	Scope (\_SB.PCI0.RP01.PXSX) // UPSB
 	{
 		// This is the key fix for machines that turn off the Type-C port, right here.
 		Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status

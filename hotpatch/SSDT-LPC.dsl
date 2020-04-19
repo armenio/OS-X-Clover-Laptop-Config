@@ -5,7 +5,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "LPC", 0)
 {
 #endif
     External (_SB.PCI0.LPCB, DeviceObj)
-    Scope (_SB.PCI0.LPCB)
+    Scope (\_SB.PCI0.LPCB)
     {
         OperationRegion (RMP0, PCI_Config, 2, 2)
         Field (RMP0, AnyAcc, NoLock, Preserve)

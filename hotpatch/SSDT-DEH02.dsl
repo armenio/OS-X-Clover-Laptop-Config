@@ -8,7 +8,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "DEH02", 0)
     External (_SB.PCI0.LPCB, DeviceObj)
 
     // registers needed for disabling EHC#1
-    Scope (_SB.PCI0.EH02)
+    Scope (\_SB.PCI0.EH02)
     {
         OperationRegion (RMP1, PCI_Config, 0x54, 2)
         Field (RMP1, WordAcc, NoLock, Preserve)
@@ -16,7 +16,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "DEH02", 0)
             PSTE, 2  // bits 2:0 are power state
         }
     }
-    Scope (_SB.PCI0.LPCB)
+    Scope (\_SB.PCI0.LPCB)
     {
         OperationRegion (RMP2, PCI_Config, 0xF0, 4)
         Field (RMP2, DWordAcc, NoLock, Preserve)

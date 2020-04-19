@@ -5,7 +5,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "SATA", 0)
 {
 #endif
     External (_SB.PCI0.SATA, DeviceObj)
-    Scope (_SB.PCI0.SATA)
+    Scope (\_SB.PCI0.SATA)
     {
         OperationRegion (RMP1, PCI_Config, 2, 2)
         Field (RMP1, AnyAcc, NoLock, Preserve)
