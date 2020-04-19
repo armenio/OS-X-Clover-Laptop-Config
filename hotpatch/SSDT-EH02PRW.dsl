@@ -14,7 +14,8 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "EH02PRW", 0)
     // of the return package.
     // EH02._PRW is renamed to ZPRW so we can replace it here
     External (_SB.PCI0.EH02.ZPRW, MethodObj)
-    Method (_SB.PCI0.EH02._PRW)
+
+    Method (_SB.PCI0.EH02._PRW, 0, NotSerialized)
     {
         Local0 = \_SB.PCI0.EH02.ZPRW ()
         For (,,)

@@ -14,7 +14,8 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "XHCPRW", 0)
     // of the return package.
     // XHC._PRW is renamed to ZPRW so we can replace it here
     External (_SB.PCI0.XHC.ZPRW, MethodObj)
-    Method (_SB.PCI0.XHC._PRW)
+
+    Method (_SB.PCI0.XHC._PRW, 0, NotSerialized)
     {
         Local0 = \_SB.PCI0.XHC.ZPRW ()
         For (,,)
