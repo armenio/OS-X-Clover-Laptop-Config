@@ -214,7 +214,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(_PTS,1,N) to ZPTS, pair with SSDT-PTSWAK.aml</string>
+					<string>change Method (_PTS,1,N) to ZPTS, pair with SSDT-PTSWAK.aml</string>
 					<key>Find</key>
 					<data>X1BUUwE=</data>
 					<key>Replace</key>
@@ -222,7 +222,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(_PTS,1,S) to ZPTS, pair with SSDT-PTSWAK.aml</string>
+					<string>change Method (_PTS,1,S) to ZPTS, pair with SSDT-PTSWAK.aml</string>
 					<key>Find</key>
 					<data>X1BUUwk=</data>
 					<key>Replace</key>
@@ -230,7 +230,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(_WAK,1,N) to ZWAK, pair with SSDT-PTSWAK.aml</string>
+					<string>change Method (_WAK,1,N) to ZWAK, pair with SSDT-PTSWAK.aml</string>
 					<key>Find</key>
 					<data>X1dBSwE=</data>
 					<key>Replace</key>
@@ -238,7 +238,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(_WAK,1,S) to ZWAK, pair with SSDT-PTSWAK.aml</string>
+					<string>change Method (_WAK,1,S) to ZWAK, pair with SSDT-PTSWAK.aml</string>
 					<key>Find</key>
 					<data>X1dBSwk=</data>
 					<key>Replace</key>
@@ -246,7 +246,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(XWAK,0,N) to ZWAK, pair with SSDT-XWAK.aml</string>
+					<string>change Method (XWAK,0,N) to ZWAK, pair with SSDT-XWAK.aml</string>
 					<key>Find</key>
 					<data>WFdBSwA=</data>
 					<key>Replace</key>
@@ -254,7 +254,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(XWAK,0,S) to ZWAK, pair with SSDT-XWAK.aml</string>
+					<string>change Method (XWAK,0,S) to ZWAK, pair with SSDT-XWAK.aml</string>
 					<key>Find</key>
 					<data>WFdBSwg=</data>
 					<key>Replace</key>
@@ -262,7 +262,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(XSEL,0,N) to XSEZ, pair with SSDT-XSEL.aml</string>
+					<string>change Method (XSEL,0,N) to XSEZ, pair with SSDT-XSEL.aml</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
@@ -272,7 +272,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(XSEL,0,S) to XSEZ, pair with SSDT-XSEL.aml</string>
+					<string>change Method (XSEL,0,S) to XSEZ, pair with SSDT-XSEL.aml</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
@@ -282,7 +282,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(ESEL,0,N) to ESEZ, pair with SSDT-ESEL.aml</string>
+					<string>change Method (ESEL,0,N) to ESEZ, pair with SSDT-ESEL.aml</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
@@ -292,7 +292,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(ESEL,0,S) to ESEZ, pair with SSDT-ESEL.aml</string>
+					<string>change Method (ESEL,0,S) to ESEZ, pair with SSDT-ESEL.aml</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
@@ -302,7 +302,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(GPRW,2,N) to XPRW, pair with SSDT-GPRW.aml</string>
+					<string>change Method (GPRW,2,N) to XPRW, pair with SSDT-GPRW.aml</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
@@ -312,7 +312,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change Method(UPRW,2,N) to XPRW, pair with SSDT-UPRW.aml</string>
+					<string>change Method (UPRW,2,N) to XPRW, pair with SSDT-UPRW.aml</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>
@@ -322,7 +322,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change LANC Method(_PRW,0,S) to Method(XPRW,0,..), pair with SSDT-LANCPRW.aml</string>
+					<string>change LANC Method (_PRW,0,S) to Method (XPRW,0,..), pair with SSDT-LANCPRW.aml</string>
 					<key>Disabled</key>
 					<true/>
 					<key>Find</key>

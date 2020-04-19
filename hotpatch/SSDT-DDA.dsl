@@ -10,8 +10,12 @@
 //
 // Overrides setting of RMCF.DAUD=1 or can be used in place of RMCF.DAUD=0
 
-DefinitionBlock("", "SSDT", 2, "hack", "_DDA", 0)
+#ifndef NO_DEFINITIONBLOCK
+DefinitionBlock ("", "SSDT", 2, "HACK", "DDA", 0)
 {
-    Name(RMDA, 1)
+#endif
+    Name (RMDA, 1)
+#ifndef NO_DEFINITIONBLOCK
 }
+#endif
 //EOF

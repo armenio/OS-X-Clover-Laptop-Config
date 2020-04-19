@@ -2,9 +2,9 @@
 // instead of the Ctrl+Option+Arrows
 DefinitionBlock ("", "SSDT", 2, "hack", "ps2", 0)
 {
-    Name(_SB.PCI0.LPCB.PS2K.RMCF, Package()
+    Name (_SB.PCI0.LPCB.PS2K.RMCF, Package ()
     {
-        "Keyboard", Package()
+        "Keyboard", Package ()
         {
             "ActionSwipeUp", "37 d, 7e d, 7e u, 37 u",
             "ActionSwipeDown", "37 d, 7d d, 7d u, 37 u",

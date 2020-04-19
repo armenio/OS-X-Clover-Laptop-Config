@@ -11,7 +11,7 @@
 //
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "hack", "YTBT", 0x00000000)
+DefinitionBlock ("", "SSDT", 2, "HACK", "YTBT", 0)
 {
 #endif
     Scope (\_GPE)

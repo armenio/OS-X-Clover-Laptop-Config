@@ -12,13 +12,13 @@ DefinitionBlock ("", "SSDT", 2, "hack", "_USBX", 0)
 #endif
     Scope (\_SB)
     {
-        Device(USBX)
+        Device (USBX)
         {
-            Name(_ADR, 0)
+            Name (_ADR, 0)
             Method (_DSM, 4)
             {
-                If (!Arg2) { Return (Buffer() { 0x03 } ) }
-                Return (Package()
+                If (!Arg2) { Return (Buffer () { 0x03 } ) }
+                Return (Package ()
                 {
                     // from iMac17+
                     "kUSBSleepPowerSupply", 0x13EC, 

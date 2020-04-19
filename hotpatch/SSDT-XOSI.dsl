@@ -1,19 +1,19 @@
 // Override for host defined _OSI to handle "Darwin"...
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_XOSI", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "XOSI", 0)
 {
 #endif
     // All _OSI calls in DSDT are routed to XOSI...
     // As written, this XOSI simulates "Windows 2015" (which is Windows 10)
-    // Note: According to ACPI spec, _OSI("Windows") must also return true
+    // Note: According to ACPI spec, _OSI ("Windows") must also return true
     //  Also, it should return true for all previous versions of Windows.
-    Method(XOSI, 1)
+    Method (XOSI, 1)
     {
         // simulation targets
         // source: (google 'Microsoft Windows _OSI')
         //  https://docs.microsoft.com/en-us/windows-hardware/drivers/acpi/winacpi-osi
-        Local0 = Package()
+        Local0 = Package ()
         {
             "Windows",               // "generic Windows query"
             "Windows 2000",          // "Windows 2000"
@@ -36,7 +36,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "_XOSI", 0)
             // "Windows 2018.2",     // "Windows 10, version 1809"
             // "Windows 2019",       // "Windows 10, version 1903"
         }
-        Return (Ones != Match(Local0, MEQ, Arg0, MTR, 0, 0))
+        Return (Ones != Match (Local0, MEQ, Arg0, MTR, 0, 0))
     }
 #ifndef NO_DEFINITIONBLOCK
 }

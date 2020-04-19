@@ -2,23 +2,23 @@
 DefinitionBlock ("", "SSDT", 2, "hack", "ps2", 0)
 {
     // Change _SB.PCI0.LPC.KBD if your PS2 keyboard is at a different ACPI path
-    External(_SB.PCI0.LPC.KBD, DeviceObj)
-    Scope(_SB.PCI0.LPC.KBD)
+    External (_SB.PCI0.LPC.KBD, DeviceObj)
+    Scope (_SB.PCI0.LPC.KBD)
     {
         // Select specific configuration in VoodooPS2Trackpad.kext
-        Method(_DSM, 4)
+        Method (_DSM, 4)
         {
-            If (!Arg2) { Return (Buffer() { 0x03 } ) }
-            Return (Package()
+            If (!Arg2) { Return (Buffer () { 0x03 } ) }
+            Return (Package ()
             {
                 "RM,oem-id", "LENOVO",
                 "RM,oem-table-id", "Thinkpad_ClickPad",
             })
         }
         // Overrides (the example data here is default in the Info.plist)
-        Name(RMCF, Package()
+        Name (RMCF, Package ()
         {
-            "Synaptics TouchPad", Package()
+            "Synaptics TouchPad", Package ()
             {
                 "BogusDeltaThreshX", 800,
                 "BogusDeltaThreshY", 800,

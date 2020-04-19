@@ -11,7 +11,7 @@
 //
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "hack", "TYPC", 0x00000000)
+DefinitionBlock ("", "SSDT", 2, "HACK", "TYPC", 0)
 {
 #endif
 	External (_SB.PCI0.RP01.PXSX, DeviceObj)    // (from opcode)

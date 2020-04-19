@@ -12,27 +12,27 @@
 #define COFFEELAKE_PWMMAX 0xffff
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "PNLF", 0)
 {
 #endif
-    External(RMCF.BKLT, IntObj)
-    External(RMCF.LMAX, IntObj)
-    External(RMCF.LEVW, IntObj)
-    External(RMCF.GRAN, IntObj)
-    External(RMCF.FBTP, IntObj)
+    External (RMCF.BKLT, IntObj)
+    External (RMCF.LMAX, IntObj)
+    External (RMCF.LEVW, IntObj)
+    External (RMCF.GRAN, IntObj)
+    External (RMCF.FBTP, IntObj)
 
-    External(_SB.PCI0.IGPU, DeviceObj)
-    Scope(_SB.PCI0.IGPU)
+    External (_SB.PCI0.IGPU, DeviceObj)
+    Scope (_SB.PCI0.IGPU)
     {
-        OperationRegion(RMP3, PCI_Config, 0, 0x14)
+        OperationRegion (RMP3, PCI_Config, 0, 0x14)
     }
 
     // For backlight control
-    Device(_SB.PCI0.IGPU.PNLF)
+    Device (_SB.PCI0.IGPU.PNLF)
     {
-        Name(_ADR, Zero)
-        Name(_HID, EisaId("APP0002"))
-        Name(_CID, "backlight")
+        Name (_ADR, Zero)
+        Name (_HID, EisaId ("APP0002"))
+        Name (_CID, "backlight")
         // _UID is set depending on PWMMax to match profiles in AppleBacklightFixup.kext Info.plist
         // 14: Sandy/Ivy 0x710
         // 15: Haswell/Broadwell 0xad9
@@ -41,13 +41,13 @@ DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
         // 18: custom LMAX=0x1499
         // 19: CoffeeLake 0xffff
         // 99: Other (requires custom AppleBacklightInjector.kext/AppleBackightFixup.kext)
-        Name(_UID, 0)
-        Name(_STA, 0x0B)
+        Name (_UID, 0)
+        Name (_STA, 0x0B)
 
-        Field(^RMP3, AnyAcc, NoLock, Preserve)
+        Field (^RMP3, AnyAcc, NoLock, Preserve)
         {
-            Offset(0x02), GDID,16,
-            Offset(0x10), BAR1,32,
+            Offset (0x02), GDID,16,
+            Offset (0x10), BAR1,32,
         }
 
         // IGPU PWM backlight register descriptions:
@@ -59,26 +59,26 @@ DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
         //   LEVX PWMMax except FBTYPE_HSWPLUS combo of max/level (Sandy/Ivy stored in MSW)
         //   LEVD level of backlight for Coffeelake
         //   PCHL not currently used
-        OperationRegion(RMB1, SystemMemory, BAR1 & ~0xF, 0xe1184)
-        Field(RMB1, AnyAcc, Lock, Preserve)
+        OperationRegion (RMB1, SystemMemory, BAR1 & ~0xF, 0xe1184)
+        Field (RMB1, AnyAcc, Lock, Preserve)
         {
-            Offset(0x48250),
+            Offset (0x48250),
             LEV2, 32,
             LEVL, 32,
-            Offset(0x70040),
+            Offset (0x70040),
             P0BL, 32,
-            Offset(0xc2000),
+            Offset (0xc2000),
             GRAN, 32,
-            Offset(0xc8250),
+            Offset (0xc8250),
             LEVW, 32,
             LEVX, 32,
             LEVD, 32,
-            Offset(0xe1180),
+            Offset (0xe1180),
             PCHL, 32,
         }
 
         // INI1 is common code used by FBTYPE_HSWPLUS and FBTYPE_CFL
-        Method(INI1, 1)
+        Method (INI1, 1)
         {
             // INTEL OPEN SOURCE HD GRAPHICS, INTEL IRIS GRAPHICS, AND INTEL IRIS PRO GRAPHICS PROGRAMMER'S REFERENCE MANUAL (PRM)
             // FOR THE 2015-2016 INTEL CORE PROCESSORS, CELERON PROCESSORS AND PENTIUM PROCESSORS BASED ON THE "SKYLAKE" PLATFORM
@@ -95,32 +95,32 @@ DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
             If (0 == (2 & Arg0))
             {
                 Local5 = 0xC0000000
-                If (CondRefOf(\RMCF.LEVW)) { If (Ones != \RMCF.LEVW) { Local5 = \RMCF.LEVW } }
+                If (CondRefOf (\RMCF.LEVW)) { If (Ones != \RMCF.LEVW) { Local5 = \RMCF.LEVW } }
                 ^LEVW = Local5
             }
             // from step 2 above (you may need 1 instead)
             If (4 & Arg0)
             {
-                If (CondRefOf(\RMCF.GRAN)) { ^GRAN = \RMCF.GRAN }
+                If (CondRefOf (\RMCF.GRAN)) { ^GRAN = \RMCF.GRAN }
                 Else { ^GRAN = 0 }
             }
         }
 
-        Method(_INI)
+        Method (_INI)
         {
             // IntelBacklight.kext takes care of this at load time...
             // If RMCF.BKLT does not exist, it is assumed you want to use AppleBacklight.kext...
             Local4 = 1
-            If (CondRefOf(\RMCF.BKLT)) { Local4 = \RMCF.BKLT }
+            If (CondRefOf (\RMCF.BKLT)) { Local4 = \RMCF.BKLT }
             If (!(1 & Local4)) { Return }
 
             // Adjustment required when using AppleBacklight.kext
             Local0 = ^GDID
             Local2 = Ones
-            If (CondRefOf(\RMCF.LMAX)) { Local2 = \RMCF.LMAX }
+            If (CondRefOf (\RMCF.LMAX)) { Local2 = \RMCF.LMAX }
             // Determine framebuffer type (for PWM register layout)
             Local3 = 0
-            If (CondRefOf(\RMCF.FBTP)) { Local3 = \RMCF.FBTP }
+            If (CondRefOf (\RMCF.FBTP)) { Local3 = \RMCF.FBTP }
 
             // Now fixup the backlight PWM depending on the framebuffer type
             // At this point:
@@ -130,7 +130,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
             //   Local3 is framebuffer type
 
             // check Sandy/Ivy
-            If (FBTYPE_SANDYIVY == Local3 || Ones != Match(Package()
+            If (FBTYPE_SANDYIVY == Local3 || Ones != Match (Package ()
             {
                 // Sandy HD3000
                 0x010b, 0x0102,
@@ -169,14 +169,14 @@ DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
                 }
             }
             // check CoffeeLake
-            ElseIf (FBTYPE_CFL == Local3 || Ones != Match(Package()
+            ElseIf (FBTYPE_CFL == Local3 || Ones != Match (Package ()
             {
                 // CoffeeLake identifiers from AppleIntelCFLGraphicsFramebuffer.kext
                 0x3e9b, 0x3ea5, 0x3e92, 0x3e91,
             }, MEQ, Local0, MTR, 0, 0))
             {
                 if (Ones == Local2) { Local2 = COFFEELAKE_PWMMAX }
-                INI1(Local4)
+                INI1 (Local4)
                 // change/scale only if different than current...
                 Local1 = ^LEVX
                 If (!Local1) { Local1 = Local2 }
@@ -206,7 +206,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
                 if (Ones == Local2)
                 {
                     // check Haswell and Broadwell, as they are both 0xad9 (for most common ig-platform-id values)
-                    If (Ones != Match(Package()
+                    If (Ones != Match (Package ()
                     {
                         // Haswell
                         0x0d26, 0x0a26, 0x0d22, 0x0412, 0x0416, 0x0a16, 0x0a1e, 0x0a1e, 0x0a2e, 0x041e, 0x041a,
@@ -224,7 +224,7 @@ DefinitionBlock("", "SSDT", 2, "hack", "_PNLF", 0)
                         Local2 = SKYLAKE_PWMMAX
                     }
                 }
-                INI1(Local4)
+                INI1 (Local4)
                 // change/scale only if different than current...
                 Local1 = ^LEVX >> 16
                 If (!Local1) { Local1 = Local2 }

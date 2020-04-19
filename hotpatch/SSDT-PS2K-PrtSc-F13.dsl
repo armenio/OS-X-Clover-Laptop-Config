@@ -3,13 +3,13 @@
 // via SysPrefs->Keyboard->Shortcuts
 DefinitionBlock ("", "SSDT", 2, "hack", "ps2", 0)
 {
-    Name(_SB.PCI0.LPCB.PS2K.RMCF, Package()
+    Name (_SB.PCI0.LPCB.PS2K.RMCF, Package ()
     {
-        "Keyboard", Package()
+        "Keyboard", Package ()
         {
-            "Custom PS2 Map", Package()
+            "Custom PS2 Map", Package ()
             {
-                Package(){},
+                Package (){},
                 "e037=64", // PrtSc=F13
             },
         },

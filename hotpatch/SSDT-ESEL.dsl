@@ -1,7 +1,7 @@
 // Disabling ESEL
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_ESEL", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "ESEL", 0)
 {
 #endif
     // In DSDT, native ESEL is renamed ESEX

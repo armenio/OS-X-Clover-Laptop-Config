@@ -1,7 +1,7 @@
 // Disabling XWAK
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_XWAK", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "XWAK", 0)
 {
 #endif
     // In DSDT, native XWAK is renamed ZWAK

@@ -3,9 +3,9 @@
 DefinitionBlock ("", "SSDT", 2, "hack", "acpibatt", 0)
 {
     // assumption that battery device is at _SB.BAT1 (check your DSDT)
-    External(_SB.BAT1, DeviceObj)
+    External (_SB.BAT1, DeviceObj)
     
-    Name(_SB.BAT1.RMCF, Package()
+    Name (_SB.BAT1.RMCF, Package ()
     {
         "UseExtendedBatteryInformationMethod", ">y",
         "UseExtraBatteryInformationMethod", ">y",

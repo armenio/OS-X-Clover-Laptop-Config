@@ -14,13 +14,13 @@
 // Adjust this code according to what you find for Processor objects in your own DSDT.
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock("", "SSDT", 2, "hack", "_XCPM", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "XCPM", 0)
 {
 #endif
-    Method(_PR.CPU0._DSM, 4)
+    Method (_PR.CPU0._DSM, 4)
     {
-        If (!Arg2) { Return (Buffer() { 0x03 } ) }
-        Return (Package()
+        If (!Arg2) { Return (Buffer () { 0x03 } ) }
+        Return (Package ()
         {
             "plugin-type", 1
         })

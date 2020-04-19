@@ -8,10 +8,10 @@
 DefinitionBlock ("", "SSDT", 2, "hack", "ps2dell", 0)
 {
     // Select Dell specific keyboard map in VoodooPS2Keyboard.kext
-    Method(_SB.PCI0.LPCB.PS2K._DSM, 4)
+    Method (_SB.PCI0.LPCB.PS2K._DSM, 4)
     {
-        If (!Arg2) { Return (Buffer() { 0x03 } ) }
-        Return (Package()
+        If (!Arg2) { Return (Buffer () { 0x03 } ) }
+        Return (Package ()
         {
             "RM,oem-id", "DELL",
             "RM,oem-table-id", "WN09",

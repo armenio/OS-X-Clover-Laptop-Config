@@ -10,10 +10,10 @@
 
 DefinitionBlock ("", "SSDT", 1, "hack", "_CCALC", 0)
 {
-    External(_SB.PCI0.HDEF, DeviceObj)
-    Name(_SB.PCI0.HDEF.RMCF, Package()
+    External (_SB.PCI0.HDEF, DeviceObj)
+    Name (_SB.PCI0.HDEF.RMCF, Package ()
     {
-        "CodecCommander", Package()
+        "CodecCommander", Package ()
         {
             "Perform Reset", ">n",
             "Perform Reset on External Wake", ">n",
