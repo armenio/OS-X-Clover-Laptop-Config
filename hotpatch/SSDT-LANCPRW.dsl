@@ -14,7 +14,8 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "LANCPRW", 0)
     // of the return package.
     // LANC._PRW is renamed to ZPRW so we can replace it here
     External (_SB.PCI0.LANC.ZPRW, MethodObj)
-    Method (_SB.PCI0.LANC._PRW)
+
+    Method (_SB.PCI0.LANC._PRW, 0, NotSerialized)
     {
         Local0 = \_SB.PCI0.LANC.ZPRW ()
         For (,,)
