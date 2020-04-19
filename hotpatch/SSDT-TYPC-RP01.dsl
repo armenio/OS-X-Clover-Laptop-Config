@@ -1,3 +1,4 @@
+// From the-darkvoid repo
 //
 // SSDT-YTBT.dsl
 //
@@ -9,14 +10,10 @@
 // https://www.tonymacx86.com/threads/usb-c-hotplug-questions.211313/
 //
 
-// XHC.SS01 - USB 3 right side
-// XHC.SS02 - USB 3 left side
-// XHC.HS02 - USB 2 left side
-// XHC.HS01.HUB - USB 2 right side
-
-
+#ifndef NO_DEFINITIONBLOCK
 DefinitionBlock ("", "SSDT", 2, "hack", "TYPC", 0x00000000)
 {
+#endif
 	External (_SB.PCI0.RP01.PXSX, DeviceObj)    // (from opcode)
 
 	// USB-C
@@ -33,4 +30,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "TYPC", 0x00000000)
 			Return (0x0F)
 		}
 	}
+#ifndef NO_DEFINITIONBLOCK
 }
+#endif
+//EOF

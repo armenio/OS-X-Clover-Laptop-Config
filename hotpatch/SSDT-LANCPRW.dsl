@@ -4,7 +4,7 @@
 DefinitionBlock("", "SSDT", 2, "hack", "_LANCPRW", 0)
 {
 #endif
-    External(XPRW, MethodObj)
+    // External(XPRW, MethodObj)
     External(RMCF.DWOU, IntObj)
 
     // In DSDT, native LANC._PRW is renamed XPRW with Clover binpatch.

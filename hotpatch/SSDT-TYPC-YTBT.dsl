@@ -1,3 +1,4 @@
+// From the-darkvoid repo
 //
 // SSDT-YTBT.dsl
 //
@@ -9,8 +10,10 @@
 // https://www.tonymacx86.com/threads/usb-c-hotplug-questions.211313/
 //
 
+#ifndef NO_DEFINITIONBLOCK
 DefinitionBlock ("", "SSDT", 2, "hack", "YTBT", 0x00000000)
-{   
+{
+#endif
     Scope (\_GPE)
     {
         Method (YTBT, 2, NotSerialized)
@@ -25,4 +28,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "YTBT", 0x00000000)
             }
         }
     }
+#ifndef NO_DEFINITIONBLOCK
 }
+#endif
+//EOF

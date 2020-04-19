@@ -1,4 +1,4 @@
-// Inject plugin-type=1 on \_PR_.CPU0
+// Inject plugin-type=1 on _PR.CPU0
 
 // This is experimental to see how only injecting plugin-type with native CPU PM SSDTs
 // works on various platforms.
@@ -14,23 +14,15 @@
 // Adjust this code according to what you find for Processor objects in your own DSDT.
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "XCPM", 0x00000000)
+DefinitionBlock("", "SSDT", 2, "hack", "_XCPM", 0)
 {
 #endif
-    Method (\_PR_.CPU0._DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+    Method(_PR.CPU0._DSM, 4)
     {
-        If (LEqual (Arg2, Zero))
+        If (!Arg2) { Return (Buffer() { 0x03 } ) }
+        Return (Package()
         {
-            Return (Buffer (One)
-            {
-                 0x03                                           
-            })
-        }
-
-        Return (Package (0x02)
-        {
-            "plugin-type", 
-            One
+            "plugin-type", 1
         })
     }
 #ifndef NO_DEFINITIONBLOCK

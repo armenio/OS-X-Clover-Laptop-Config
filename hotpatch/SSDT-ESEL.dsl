@@ -1,14 +1,19 @@
 // Disabling ESEL
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "ESEL", 0x00000000)
+DefinitionBlock("", "SSDT", 2, "hack", "_ESEL", 0)
 {
 #endif
     // In DSDT, native ESEL is renamed ESEX
     // As a result, calls to it land here.
-    Method(_SB.PCI0.XHC.ESEL)
+    External (_SB_.PCI0.XHC_, DeviceObj)
+
+    Scope (\_SB.PCI0.XHC)
     {
-        // do nothing
+        Method (ESEL)
+        {
+            // do nothing
+        }
     }
 #ifndef NO_DEFINITIONBLOCK
 }

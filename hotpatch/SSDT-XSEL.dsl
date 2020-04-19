@@ -1,14 +1,19 @@
 // Disabling XSEL
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "XSEL", 0x00000000)
+DefinitionBlock("", "SSDT", 2, "hack", "_XSEL", 0)
 {
 #endif
     // In DSDT, native XSEL is renamed ZSEL
     // As a result, calls to it land here.
-    Method(_SB.PCI0.XHC.XSEL)
+    External (_SB_.PCI0.XHC_, DeviceObj)
+
+    Scope (\_SB.PCI0.XHC)
     {
-        // do nothing
+        Method (XSEL)
+        {
+            // do nothing
+        }
     }
 #ifndef NO_DEFINITIONBLOCK
 }

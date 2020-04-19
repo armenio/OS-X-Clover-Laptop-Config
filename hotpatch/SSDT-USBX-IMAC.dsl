@@ -1,3 +1,4 @@
+// From RehabMan repo
 //
 // USB Power Propertes for Sierra
 //
@@ -5,23 +6,30 @@
 //  in IOUSBHostFamily Info.plist
 //
 
-//DefinitionBlock ("", "SSDT", 2, "hack", "_USBX", 0)
-//{
-    Device(_SB.USBX)
+#ifndef NO_DEFINITIONBLOCK
+DefinitionBlock ("", "SSDT", 2, "hack", "_USBX", 0)
+{
+#endif
+    Scope (\_SB)
     {
-        Name(_ADR, 0)
-        Method (_DSM, 4)
+        Device(USBX)
         {
-            If (!Arg2) { Return (Buffer() { 0x03 } ) }
-            Return (Package()
+            Name(_ADR, 0)
+            Method (_DSM, 4)
             {
-                // from iMac17,1
-                "kUSBSleepPortCurrentLimit", 2100,
-                "kUSBSleepPowerSupply", 5100,
-                "kUSBWakePortCurrentLimit", 2100,
-                "kUSBWakePowerSupply", 5100,
-            })
+                If (!Arg2) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    // from iMac17+
+                    "kUSBSleepPowerSupply", 0x13EC, 
+                    "kUSBSleepPortCurrentLimit", 0x0834, 
+                    "kUSBWakePowerSupply", 0x13EC, 
+                    "kUSBWakePortCurrentLimit", 0x0834,
+                })
+            }
         }
     }
-//}
+#ifndef NO_DEFINITIONBLOCK
+}
+#endif
 //EOF

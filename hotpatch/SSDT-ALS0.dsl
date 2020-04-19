@@ -1,36 +1,26 @@
 // Fake ambient light sensor device
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "ALS0", 0x00000000)
+DefinitionBlock("", "SSDT", 2, "hack", "_ALS0", 0)
 {
 #endif
-    Device (_SB.ALS0)
-    {
-        Name (_HID, "ACPI0008")  // _HID: Hardware ID
-        Name (_CID, "smc-als")  // _CID: Compatible ID
-        Method (_ALI, 0, NotSerialized)  // _ALI: Ambient Light Illuminance
-        {
-            Return (0x012C)
-        }
+    External (_SB_.PCI0.LPCB, DeviceObj)
 
-        Name (_ALR, Package (0x01)  // _ALR: Ambient Light Response
+    Scope (\_SB.PCI0.LPCB)
+    {
+        Device (ALS0)
         {
-            Package (0x02)
+            Name(_HID, "ACPI0008")
+            Name(_CID, "smc-als")
+            Name(_ALI, 300)
+            Name(_ALR, Package()
             {
-                0x64, 
-                0x012C
-            }
-        })
-        Method (_STA, 0, NotSerialized)  // _STA: Status
-        {
-            If (_OSI ("Darwin"))
-            {
-                Return (0x0F)
-            }
-            Else
-            {
-                Return (Zero)
-            }
+                //Package() { 70, 0 },
+                //Package() { 73, 10 },
+                //Package() { 85, 80 },
+                Package() { 100, 300 },
+                //Package() { 150, 1000 },
+            })
         }
     }
 #ifndef NO_DEFINITIONBLOCK
