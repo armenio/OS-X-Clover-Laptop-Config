@@ -1,4 +1,5 @@
-// For solving instant wake by hooking GPRW or UPRW
+// For solving instant wake by hooking GPRW (Serialized)
+// Based on SSDT-GPRW.dsl
 
 #ifndef NO_DEFINITIONBLOCK
 DefinitionBlock ("", "SSDT", 2, "HACK", "GPRW", 0)
@@ -12,7 +13,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "GPRW", 0)
     // The purpose of this implementation is to avoid "instant wake"
     // by returning 0 in the second position (sleep state supported)
     // of the return package.
-    Method (GPRW, 2)
+    Method (GPRW, 2, Serialized)
     {
         For (,,)
         {

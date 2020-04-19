@@ -1,18 +1,19 @@
-// For solving instant wake by hooking GPRW or UPRW
+// For solving instant wake by hooking UPRW (Serialized)
+// Based on SSDT-UPRW.dsl
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "GPRW", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "UPRW", 0)
 {
 #endif
     External (XPRW, MethodObj)
     External (RMCF.DWOU, IntObj)
 
-    // In DSDT, native GPRW is renamed to XPRW with Clover binpatch.
-    // As a result, calls to GPRW land here.
+    // In DSDT, native UPRW is renamed to XPRW with Clover binpatch.
+    // As a result, calls to UPRW land here.
     // The purpose of this implementation is to avoid "instant wake"
     // by returning 0 in the second position (sleep state supported)
     // of the return package.
-    Method (GPRW, 2)
+    Method (UPRW, 2, Serialized)
     {
         For (,,)
         {
