@@ -1,6 +1,6 @@
 // SSDT example of configuration override
 
-DefinitionBlock ("", "SSDT", 2, "hack", "acpibatt", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "acpibatt", 0)
 {
     // assumption that battery device is at _SB.BAT1 (check your DSDT)
     External (_SB.BAT1, DeviceObj)

@@ -48,7 +48,7 @@
 //
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "hack", "BATC", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
 {
 #endif
     External (_SB_.PCI0.LPCB.EC, DeviceObj)
@@ -63,7 +63,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "BATC", 0)
     External (_SB_.PCI0.LPCB.EC.BAT1._HID, IntObj)
     External (_SB_.PCI0.LPCB.EC.BAT1._STA, MethodObj)
 
-    Scope (_SB.PCI0.LPCB.EC)
+    Scope (\_SB.PCI0.LPCB.EC)
     {
         Device (BATC)
         {

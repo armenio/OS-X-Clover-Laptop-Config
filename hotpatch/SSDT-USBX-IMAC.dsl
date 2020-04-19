@@ -7,7 +7,7 @@
 //
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "hack", "_USBX", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "_USBX", 0)
 {
 #endif
     Scope (\_SB)
