@@ -35,16 +35,16 @@
 //
 // You can Clover hotpatch (config.plist/ACPI/DSDT/Patches) your battery code.
 //
-// For example, Notify(BAT0, 0x80) is
+// For example, Notify (BAT0, 0x80) is
 //   86 42 41 54 30 0A 80
-// To change it to Notify(BATC, 0x80):
+// To change it to Notify (BATC, 0x80):
 //   86 42 41 54 43 0A 80
 //
 // Sometimes, you'll find there is a fully qualified path.
-// Such as, Notify (\_SB.PCI0.LPC.EC.BAT1, 0x01)
-//   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 5F 45 43 5F 5F 42 41 54 30 0A 01
+// Such as, Notify (\_SB.PCI0.LPCB.EC.BAT1, 0x01)
+//   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 42 45 43 5F 5F 42 41 54 31 0A 01
 // Changing to BATC:
-//   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 5F 45 43 5F 5F 42 41 54 43 0A 01
+//   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 42 45 43 5F 5F 42 41 54 43 0A 01
 //
 // You may find that 0x01 is optimized:
 //   86 5C 2F 05 5F 53 42 5F 50 43 49 30 4C 50 43 5F 45 43 5F 5F 42 41 54 30 01
@@ -54,20 +54,20 @@
 
 DefinitionBlock ("", "SSDT", 2, "hack", "BATC", 0)
 {
-    External(_SB.PCI0.LPC.EC, DeviceObj)
-    Scope(_SB.PCI0.LPC.EC)
+    External (_SB_.PCI0.LPCB.EC, DeviceObj)
+    External (_SB_.PCI0.LPCB.EC.BAT0, DeviceObj)
+    External (_SB_.PCI0.LPCB.EC.BAT0._BIF, MethodObj)
+    External (_SB_.PCI0.LPCB.EC.BAT0._BST, MethodObj)
+    External (_SB_.PCI0.LPCB.EC.BAT0._HID, IntObj)
+    External (_SB_.PCI0.LPCB.EC.BAT0._STA, MethodObj)
+    External (_SB_.PCI0.LPCB.EC.BAT1, DeviceObj)
+    External (_SB_.PCI0.LPCB.EC.BAT1._BIF, MethodObj)
+    External (_SB_.PCI0.LPCB.EC.BAT1._BST, MethodObj)
+    External (_SB_.PCI0.LPCB.EC.BAT1._HID, IntObj)
+    External (_SB_.PCI0.LPCB.EC.BAT1._STA, MethodObj)
+
+    Scope(_SB.PCI0.LPCB.EC)
     {
-        External(BAT0, DeviceObj)
-        External(BAT0._HID, IntObj)
-        External(BAT0._STA, MethodObj)
-        External(BAT0._BIF, MethodObj)
-        External(BAT0._BST, MethodObj)
-        External(BAT1, DeviceObj)
-        External(BAT1._HID, IntObj)
-        External(BAT1._STA, MethodObj)
-        External(BAT1._BIF, MethodObj)
-        External(BAT1._BST, MethodObj)
-        
         Device(BATC)
         {
             Name(_HID, EisaId ("PNP0C0A"))
