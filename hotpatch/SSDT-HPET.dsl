@@ -15,6 +15,9 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "HPET", 0)
     External (_SB_.PCI0.LPCB.HPET._STA, UnknownObj) // name or method
     External (_SB_.PCI0.LPCB.HPET._CRS, UnknownObj) // name or method
 
+    External (_SB_.PCI0.LPCB.HPET.DSTX, MethodObj) // method
+    External (_SB_.PCI0.LPCB.HPET.DSTZ, IntObj) // name
+
     Scope (\_SB.PCI0.LPCB.HPET)
     {
         If (!CondRefOf (\_SB.PCI0.LPCB.HPET._HID))
