@@ -1,6 +1,9 @@
 // Example overrides for Thinkpad models with ClickPad
+
+#ifndef NO_DEFINITIONBLOCK
 DefinitionBlock ("", "SSDT", 2, "HACK", "KBD", 0)
 {
+#endif
     // Change _SB.PCI0.LPCB.KBD if your PS2 keyboard is at a different ACPI path
     External (_SB_.PCI0.LPCB.KBD, DeviceObj)
 
@@ -57,5 +60,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "KBD", 0)
             },
         })
     }
+#ifndef NO_DEFINITIONBLOCK
 }
+#endif
 //EOF
