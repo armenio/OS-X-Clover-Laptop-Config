@@ -58,7 +58,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "RMCF", 0)
         //  0: does not affect _PTS behavior during shutdown
         //  bit 1 set: disables _PTS code during shutdown
         //  bit 2 set: sets SLPE to zero in _PTS during shutdown
-        Name (SHUT, 0)
+        Name (SHUT, 1)
 
         // XPEE: XHC.PMEE fix, set XHC.PMEE=0 in _PTS when Arg0==5 (shutdown)
         // This fixes "auto restart" after shutdown when USB devices are plugged into XHC on
@@ -66,13 +66,13 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "RMCF", 0)
         //
         // 0: does not affect _PTS behavior during shutdown
         // 1: sets XHC.PMEE in _PTS code during shutdown
-        Name (XPEE, 0)
+        Name (XPEE, 1)
 
         // SSTF: _SI._SST fix.  To fix LED on wake.  Useful for some Thinkpad laptops.
         //
         // 0: no effect during _WAK
         // 1: calls _SI._SST (1) during _WAK when Arg0 == 3 (waking from S3 sleep)
-        Name (SSTF, 0)
+        Name (SSTF, 1)
 
         // AUDL: Audio Layout
         //
