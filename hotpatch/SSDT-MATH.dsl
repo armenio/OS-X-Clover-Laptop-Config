@@ -1,6 +1,5 @@
 // Generic MATH Fix
 // x87-compatible Floating Point Processing Unit
-// Allow to fix MATH or dimply disable it
 
 #ifndef NO_DEFINITIONBLOCK
 DefinitionBlock ("", "SSDT", 2, "HACK", "MATH", 0)
