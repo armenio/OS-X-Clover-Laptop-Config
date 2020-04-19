@@ -27,13 +27,13 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "MATH", 0)
 
         If (!CondRefOf (\_SB.PCI0.LPCB.MATH._CRS))
         {
-            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+            Name (_CRS, ResourceTemplate ()
             {
                 IO (Decode16,
-                    0x00F0,             // Range Minimum
-                    0x00F0,             // Range Maximum
-                    0x01,               // Alignment
-                    0x01,               // Length
+                    0x00F0,
+                    0x00F0,
+                    0x01,
+                    0x01,
                     )
                 IRQNoFlags ()
                     {13}
