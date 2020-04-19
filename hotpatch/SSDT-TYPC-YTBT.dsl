@@ -18,14 +18,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "YTBT", 0)
     {
         Method (YTBT, 2, NotSerialized)
         {
-            If ((Arg0 == Arg1)) //Gets rid of a warning. We want this method to always return 0.
-            {
-                Return (Zero)    
-            }
-            Else
-            {
-                Return (Zero)    
-            }
+            Return (Zero)
         }
     }
 #ifndef NO_DEFINITIONBLOCK
