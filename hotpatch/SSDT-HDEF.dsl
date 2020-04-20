@@ -11,7 +11,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "HDEF", 0)
     // Note: If your ACPI set (DSDT+SSDTs) does not define HDEF (or AZAL or HDAS)
     // add this Device definition (by uncommenting it)
     //
-    //Device (_SB.PCI0.HDEF)
+    //Device (\_SB.PCI0.HDEF)
     //{
     //    Name (_ADR, 0x001b0000)
     //    Name (_PRW, Package () { 0x0d, 0x05 }) // may need tweaking (or not needed)

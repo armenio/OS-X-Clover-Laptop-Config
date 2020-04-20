@@ -43,7 +43,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "DEHCI", 0)
             FDE1,1, // should be bit 15 (0-based) (FD EHCI#1)
         }
     }
-    Device (_SB.PCI0.RMD2)
+    Device (\_SB.PCI0.RMD2)
     {
         Name (_HID, "RMD20000")
         Method (_INI)
