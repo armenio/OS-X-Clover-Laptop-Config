@@ -15,7 +15,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "HPET", 0)
     External (_SB_.PCI0.LPCB.HPET._STA, UnknownObj) // name or method
     External (_SB_.PCI0.LPCB.HPET._CRS, UnknownObj) // name or method
 
-    External (_SB_.PCI0.LPCB.HPET.DSTX, UnknownObj) // name or method
+    External (_SB_.PCI0.LPCB.HPET.DSTX, UnknownObj) // if _STA is renamed to DSTX it will be disabled
 
     Scope (\_SB.PCI0.LPCB.HPET)
     {
