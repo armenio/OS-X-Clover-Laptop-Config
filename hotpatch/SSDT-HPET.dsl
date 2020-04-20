@@ -15,8 +15,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "HPET", 0)
     External (_SB_.PCI0.LPCB.HPET._STA, UnknownObj) // name or method
     External (_SB_.PCI0.LPCB.HPET._CRS, UnknownObj) // name or method
 
-    External (_SB_.PCI0.LPCB.HPET.DSTX, MethodObj) // method
-    External (_SB_.PCI0.LPCB.HPET.DSTZ, IntObj) // name
+    External (_SB_.PCI0.LPCB.HPET.DSTX, UnknownObj) // name or method
 
     Scope (\_SB.PCI0.LPCB.HPET)
     {
@@ -34,9 +33,8 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "HPET", 0)
         {
             Method (_STA, 0, NotSerialized)
             {
-                // DSTZ = Disable by name rename
                 // DSTX = Disable by method rename
-                If ((CondRefOf (\_SB.PCI0.LPCB.HPET.DSTX) || CondRefOf (\_SB.PCI0.LPCB.HPET.DSTZ)))
+                If (CondRefOf (\_SB.PCI0.LPCB.HPET.DSTX))
                 {
                     Return (Zero)
                 }
