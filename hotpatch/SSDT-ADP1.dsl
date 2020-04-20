@@ -1,11 +1,11 @@
 // ADP1 Power Resources for Wake
 // Base on RehabMan system_ADP1.txt
 
-# RehabMan Note: if AppleACPIACAdapter is already loading (look at your ioreg), then
-#  this patch is not necessary for you.
+// RehabMan Note: if AppleACPIACAdapter is already loading (look at your ioreg), then
+//  this patch is not necessary for you.
 
-# RehabMan Note: Old patch used to rename AC or ACAD to ADP1 to be more "Apple" like
-#  Turns out, this is not needed.
+// RehabMan Note: Old patch used to rename AC or ACAD to ADP1 to be more "Apple" like
+//  Turns out, this is not needed.
 
 #ifndef NO_DEFINITIONBLOCK
 DefinitionBlock ("", "SSDT", 2, "HACK", "ADP1", 0)
