@@ -17,13 +17,18 @@
 DefinitionBlock ("", "SSDT", 2, "HACK", "XCPM", 0)
 {
 #endif
-    Method (_PR.CPU0._DSM, 4)
+    External (_PR_.CPU0, ProcessorObj)
+    
+    Scope (\_PR.CPU0)
     {
-        If (!Arg2) { Return (Buffer () { 0x03 } ) }
-        Return (Package ()
+        Method (_DSM, 4)
         {
-            "plugin-type", 1
-        })
+            If (!Arg2) { Return (Buffer () { 0x03 } ) }
+            Return (Package ()
+            {
+                "plugin-type", 1
+            })
+        }
     }
 #ifndef NO_DEFINITIONBLOCK
 }
