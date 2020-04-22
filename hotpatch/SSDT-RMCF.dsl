@@ -56,9 +56,9 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "RMCF", 0)
         // SHUT: Shutdown fix, disable _PTS code when Arg0==5 (shutdown)
         //
         //  0: does not affect _PTS behavior during shutdown
-        //  bit 1 set: disables _PTS code during shutdown
-        //  bit 2 set: sets SLPE to zero in _PTS during shutdown
-        Name (SHUT, 1)
+        //  bit 0 set: disables _PTS code during shutdown
+        //  bit 1 set: sets SLPE to zero in _PTS during shutdown
+        Name (SHUT, 0x01)
 
         // XPEE: XHC.PMEE fix, set XHC.PMEE=0 in _PTS when Arg0==5 (shutdown)
         // This fixes "auto restart" after shutdown when USB devices are plugged into XHC on
