@@ -2,7 +2,7 @@
 // Based on SSDT-PTSWAK.dsl
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "_PTS", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "_WAK", 0)
 {
 #endif
     External (ZWAK, MethodObj)
