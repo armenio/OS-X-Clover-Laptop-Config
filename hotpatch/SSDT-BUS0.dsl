@@ -1,7 +1,7 @@
 // Adding SMBUS device
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "SMBUS", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "BUS0", 0)
 {
 #endif
     External (_SB_.PCI0.SBUS, DeviceObj)
