@@ -2,7 +2,7 @@
 // Based on https://github.com/osy86/HaC-Mini/blob/master/ACPI/SSDT-PmEnable.asl
 
 #ifndef NO_DEFINITIONBLOCK
-DefinitionBlock ("", "SSDT", 2, "HACK", "DEEP-IDLE", 0)
+DefinitionBlock ("", "SSDT", 2, "HACK", "DEEPIDLE", 0)
 {
 #endif
     Scope (\_SB)
