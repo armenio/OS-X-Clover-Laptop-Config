@@ -120,6 +120,16 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local4 = DerefOf (Local0[2])
                     If (!Local4 || Ones == Local4) { Local2 = 0; }
                 }
+                // if BAT0 still valid
+                If (0x1f == Local2)
+                {
+                    // Note: Following code depends on _BIF being called before _BST to set B0CO
+
+                    // _BST 1 - Battery Present Rate - Add BAT0 value
+                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO)
+                    // _BST 2 - Battery Remaining Capacity - Add BAT0 value
+                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO)
+                }
                 // gather battery data from BAT1
                 Local1 = ^^BAT1._BST ()
                 Local3 = ^^BAT1._STA ()
@@ -128,6 +138,16 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     // check for invalid remaining capacity
                     Local4 = DerefOf (Local1[2])
                     If (!Local4 || Ones == Local4) { Local3 = 0; }
+                }
+                // if BAT1 still valid
+                If (0x1f == Local3)
+                {
+                    // Note: Following code depends on _BIF being called before _BST to set B1CO
+
+                    // _BST 1 - Battery Present Rate - Add BAT1 value
+                    Local1[1] = CVWA (DerefOf (Local1[1]), B1DV, B1CO)
+                    // _BST 2 - Battery Remaining Capacity - Add BAT1 value
+                    Local1[2] = CVWA (DerefOf (Local1[2]), B1DV, B1CO)
                 }
                 // find primary and secondary battery
                 If (0x1f != Local2 && 0x1f == Local3)
@@ -165,12 +185,10 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     }
                     // if none of the above, just leave as BAT0 is
 
-                    // Note: Following code depends on _BIF being called before _BST to set B0CO and B1CO
-
                     // _BST 1 - Battery Present Rate - Add BAT0 and BAT1 values
-                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO) + CVWA (DerefOf (Local1[1]), B1DV, B1CO)
+                    Local0[1] = DerefOf (Local0[1]) + DerefOf (Local1[1])
                     // _BST 2 - Battery Remaining Capacity - Add BAT0 and BAT1 values
-                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO) + CVWA (DerefOf (Local1[2]), B1DV, B1CO)
+                    Local0[2] = DerefOf (Local0[2]) + DerefOf (Local1[2])
                     // _BST 3 - Battery Present Voltage - Average BAT0 and BAT1 values
                     Local0[3] = (DerefOf (Local0[3]) + DerefOf (Local1[3])) / 2
                 }
