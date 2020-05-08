@@ -136,11 +136,6 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local0 = Local1 // BAT1._BST result
                     Local2 = Local3 // BAT1._STA result
                     Local3 = 0  // no secondary battery
-                    
-                    // _BST 1 - Battery Present Rate
-                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO)
-                    // _BST 2 - Battery Remaining Capacity
-                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO)
                 }
                 // combine batteries into Local0 result if possible
                 If (0x1f == Local2 && 0x1f == Local3)
@@ -205,6 +200,24 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local4 = DerefOf (Local0[4])
                     If (!Local4 || Ones == Local4) { Local2 = 0; }
                 }
+                // if BAT0 still valid
+                If (0x1f == Local2)
+                {
+                    // set B0CO if convertion to amps needed
+                    B0CO = !DerefOf (Local0[0])
+                    // set _BIF[0] = 1 => mAh
+                    Local0[0] = 1
+                    // _BIF 4 - Design Voltage - store value for each Battery in mV
+                    B0DV = DerefOf (Local0[4]) // cache BAT0 voltage
+                    // _BIF 1 - Design Capacity - add BAT0 value
+                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO)
+                    // _BIF 2 - Last Full Charge Capacity - add BAT0 value
+                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO)
+                    // _BIF 5 - Design Capacity Warning - add BAT0 value
+                    Local0[5] = CVWA (DerefOf (Local0[5]), B0DV, B0CO)
+                    // _BIF 6 - Design Capacity of Low - add BAT0 value
+                    Local0[6] = CVWA (DerefOf (Local0[6]), B0DV, B0CO)
+                }
                 // gather and validate data from BAT1
                 Local1 = ^^BAT1._BIF ()
                 Local3 = ^^BAT1._STA ()
@@ -220,6 +233,24 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local4 = DerefOf (Local1[4])
                     If (!Local4 || Ones == Local4) { Local3 = 0; }
                 }
+                // if BAT1 still valid
+                If (0x1f == Local3)
+                {
+                    // set B1CO if convertion to amps needed
+                    B1CO = !DerefOf (Local1[0])
+                    // set _BIF[0] = 1 => mAh
+                    Local1[0] = 1
+                    // _BIF 4 - Design Voltage - store value for each Battery in mV
+                    B1DV = DerefOf (Local1[4]) // cache BAT1 voltage
+                    // _BIF 1 - Design Capacity - add BAT1 value
+                    Local1[1] = CVWA (DerefOf (Local1[1]), B1DV, B1CO)
+                    // _BIF 2 - Last Full Charge Capacity - add BAT1 value
+                    Local1[2] = CVWA (DerefOf (Local1[2]), B1DV, B1CO)
+                    // _BIF 5 - Design Capacity Warning - add BAT1 value
+                    Local1[5] = CVWA (DerefOf (Local1[5]), B1DV, B1CO)
+                    // _BIF 6 - Design Capacity of Low - add BAT1 value
+                    Local1[6] = CVWA (DerefOf (Local1[6]), B1DV, B1CO)
+                }
                 // find primary and secondary battery
                 If (0x1f != Local2 && 0x1f == Local3)
                 {
@@ -227,48 +258,22 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local0 = Local1 // BAT1._BIF result
                     Local2 = Local3 // BAT1._STA result
                     Local3 = 0  // no secondary battery
-                    
-                    // _BIF 0 - Power Unit - 0 = mWh | 1 = mAh
-                    // set B0CO if convertion to amps needed
-                    B0CO = !DerefOf (Local0[0])
-                    // set _BIF[0] = 1 => mAh
-                    Local0[0] = 1
-                    // _BIF 4 - Design Voltage
-                    B0DV = DerefOf (Local0[4])
-                    // _BIF 1 - Design Capacity
-                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO)
-                    // _BIF 2 - Last Full Charge Capacity
-                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO)
-                    // _BIF 4 - Design Voltage
-                    Local0[4] = B0DV
-                    // _BIF 5 - Design Capacity Warning
-                    Local0[5] = CVWA (DerefOf (Local0[5]), B0DV, B0CO)
-                    // _BIF 6 - Design Capacity of Low
-                    Local0[6] = CVWA (DerefOf (Local0[6]), B0DV, B0CO)
                 }
                 // combine batteries into Local0 result if possible
                 If (0x1f == Local2 && 0x1f == Local3)
                 {
                     // _BIF 0 - Power Unit - 0 = mWh | 1 = mAh
-                    // set B0CO/B1CO if convertion to amps needed
-                    B0CO = !DerefOf (Local0[0])
-                    B1CO = !DerefOf (Local1[0])
-                    // set _BIF[0] = 1 => mAh
-                    Local0[0] = 1
-                    // _BIF 4 - Design Voltage - store value for each Battery in mV
-                    B0DV = DerefOf (Local0[4]) // cache BAT0 voltage
-                    B1DV = DerefOf (Local1[4]) // cache BAT1 voltage
                     // _BIF 1 - Design Capacity - add BAT0 and BAT1 values
-                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO) + CVWA (DerefOf (Local1[1]), B1DV, B1CO)
+                    Local0[1] = DerefOf (Local0[1]) + DerefOf (Local1[1])
                     // _BIF 2 - Last Full Charge Capacity - add BAT0 and BAT1 values
-                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO) + CVWA (DerefOf (Local1[2]), B1DV, B1CO)
+                    Local0[2] = DerefOf (Local0[2]) + DerefOf (Local1[2])
                     // _BIF 3 - Battery Technology - leave BAT0 value
                     // _BIF 4 - Design Voltage - average BAT0 and BAT1 values
-                    Local0[4] = (B0DV + B1DV) / 2
+                    Local0[4] = (DerefOf (Local0[4]) + DerefOf (Local1[4])) / 2
                     // _BIF 5 - Design Capacity Warning - add BAT0 and BAT1 values
-                    Local0[5] = CVWA (DerefOf (Local0[5]), B0DV, B0CO) + CVWA (DerefOf (Local1[5]), B1DV, B1CO)
+                    Local0[5] = DerefOf (Local0[5]) + DerefOf (Local1[5])
                     // _BIF 6 - Design Capacity of Low - add BAT0 and BAT1 values
-                    Local0[6] = CVWA (DerefOf (Local0[6]), B0DV, B0CO) + CVWA (DerefOf (Local1[6]), B1DV, B1CO)
+                    Local0[6] = DerefOf (Local0[6]) + DerefOf (Local1[6])
                     // _BIF 7+ - Leave BAT0 values for now
                 }
                 Return (Local0)
