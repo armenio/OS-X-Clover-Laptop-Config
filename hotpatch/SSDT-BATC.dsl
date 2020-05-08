@@ -136,6 +136,11 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local0 = Local1 // BAT1._BST result
                     Local2 = Local3 // BAT1._STA result
                     Local3 = 0  // no secondary battery
+                    
+                    // _BST 1 - Battery Present Rate
+                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO)
+                    // _BST 2 - Battery Remaining Capacity
+                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO)
                 }
                 // combine batteries into Local0 result if possible
                 If (0x1f == Local2 && 0x1f == Local3)
@@ -222,6 +227,24 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local0 = Local1 // BAT1._BIF result
                     Local2 = Local3 // BAT1._STA result
                     Local3 = 0  // no secondary battery
+                    
+                    // _BIF 0 - Power Unit - 0 = mWh | 1 = mAh
+                    // set B0CO if convertion to amps needed
+                    B0CO = !DerefOf (Local0[0])
+                    // set _BIF[0] = 1 => mAh
+                    Local0[0] = 1
+                    // _BIF 4 - Design Voltage
+                    B0DV = DerefOf (Local0[4])
+                    // _BIF 1 - Design Capacity
+                    Local0[1] = CVWA (DerefOf (Local0[1]), B0DV, B0CO)
+                    // _BIF 2 - Last Full Charge Capacity
+                    Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO)
+                    // _BIF 4 - Design Voltage
+                    Local0[4] = B0DV
+                    // _BIF 5 - Design Capacity Warning
+                    Local0[5] = CVWA (DerefOf (Local0[5]), B0DV, B0CO)
+                    // _BIF 6 - Design Capacity of Low
+                    Local0[6] = CVWA (DerefOf (Local0[6]), B0DV, B0CO)
                 }
                 // combine batteries into Local0 result if possible
                 If (0x1f == Local2 && 0x1f == Local3)
