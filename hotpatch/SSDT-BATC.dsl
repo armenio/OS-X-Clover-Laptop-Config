@@ -232,7 +232,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     // _BIF 2 - Last Full Charge Capacity - add BAT0 value
                     Local0[2] = CVWA (DerefOf (Local0[2]), B0DV, B0CO)
                     // _BIF 4 - Design Voltage - add BAT0 value
-                    Local0[4] = B0DV
+                    // Local0[4] = B0DV
                     // _BIF 5 - Design Capacity Warning - add BAT0 value
                     Local0[5] = CVWA (DerefOf (Local0[5]), B0DV, B0CO)
                     // _BIF 6 - Design Capacity of Low - add BAT0 value
@@ -267,7 +267,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     // _BIF 2 - Last Full Charge Capacity - add BAT1 value
                     Local1[2] = CVWA (DerefOf (Local1[2]), B1DV, B1CO)
                     // _BIF 4 - Design Voltage - add BAT1 value
-                    Local1[4] = B1DV
+                    // Local1[4] = B1DV
                     // _BIF 5 - Design Capacity Warning - add BAT1 value
                     Local1[5] = CVWA (DerefOf (Local1[5]), B1DV, B1CO)
                     // _BIF 6 - Design Capacity of Low - add BAT1 value
