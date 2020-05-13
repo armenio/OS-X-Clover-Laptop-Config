@@ -4,6 +4,8 @@
 // initial work/testing by ag6952563 (with assistance by RehabMan)
 // finalize into generic SSDT by RehabMan
 // some code cleanup/optimization/and bug fixing by RehabMan
+// modifications to work VirtualSMC SMCBatteryManager by armenio
+// add _BIX (easy, following the original code from RehabMan) by armenio
 //
 // OS X support for multiple batteries is a bit buggy.
 // This SSDT can be used to combine two batteries into one,
@@ -161,7 +163,6 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     // _BST 3 - Battery Present Voltage - average between BAT0 and BAT1 values
                     Local0 [3] = (DerefOf (Local0 [3]) + DerefOf (Local1 [3])) / 2
                 }
-
                 Return (Local0)
             } // _BST
 
@@ -305,25 +306,24 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     Local0 [8] = (DerefOf (Local0 [8]) + DerefOf (Local1 [8])) / 2
                     // _BIX 9 Measurement Accuracy - average between BAT0 and BAT1 values
                     Local0 [9] = (DerefOf (Local0 [9]) + DerefOf (Local1 [9])) / 2
-                    // _BIX a Max Sampling Time - average between BAT0 and BAT1 values
-                    Local0 [0x0a] = (DerefOf (Local0 [0x0a]) + DerefOf (Local1 [0x0a])) / 2
-                    // _BIX b Min Sampling Time - average between BAT0 and BAT1 values
-                    Local0 [0x0b] = (DerefOf (Local0 [0x0b]) + DerefOf (Local1 [0x0b])) / 2
-                    // _BIX c Max Averaging Interval - average between BAT0 and BAT1 values
-                    Local0 [0x0c] = (DerefOf (Local0 [0x0c]) + DerefOf (Local1 [0x0c])) / 2
-                    // _BIX d Min Averaging Interval - average between BAT0 and BAT1 values
-                    Local0 [0x0d] = (DerefOf (Local0 [0x0d]) + DerefOf (Local1 [0x0d])) / 2
-                    // _BIX e Battery Capacity Granularity 1 - add BAT0 and BAT1 values
-                    Local0 [0x0e] = DerefOf (Local0 [0x0e]) + DerefOf (Local1 [0x0e])
-                    // _BIX f Battery Capacity Granularity 2 - add BAT0 and BAT1 values
-                    Local0 [0x0f] = DerefOf (Local0 [0x0f]) + DerefOf (Local1 [0x0f])
+                    // _BIX 0xa Max Sampling Time - average between BAT0 and BAT1 values
+                    Local0 [0xa] = (DerefOf (Local0 [0xa]) + DerefOf (Local1 [0xa])) / 2
+                    // _BIX 0xb Min Sampling Time - average between BAT0 and BAT1 values
+                    Local0 [0xb] = (DerefOf (Local0 [0xb]) + DerefOf (Local1 [0xb])) / 2
+                    // _BIX 0xc Max Averaging Interval - average between BAT0 and BAT1 values
+                    Local0 [0xc] = (DerefOf (Local0 [0xc]) + DerefOf (Local1 [0xc])) / 2
+                    // _BIX 0xd Min Averaging Interval - average between BAT0 and BAT1 values
+                    Local0 [0xd] = (DerefOf (Local0 [0xd]) + DerefOf (Local1 [0xd])) / 2
+                    // _BIX 0xe Battery Capacity Granularity 1 - add BAT0 and BAT1 values
+                    Local0 [0xe] = DerefOf (Local0 [0xe]) + DerefOf (Local1 [0xe])
+                    // _BIX 0xf Battery Capacity Granularity 2 - add BAT0 and BAT1 values
+                    Local0 [0xf] = DerefOf (Local0 [0xf]) + DerefOf (Local1 [0xf])
                     // _BIX 10 Model Number - leave BAT0 value for now
                     // _BIX 11 Serial Number - leave BAT0 value for now
                     // _BIX 12 Battery Type - leave BAT0 value for now
                     // _BIX 13 OEM Information - leave BAT0 value for now
                     // _BIX 14 Battery Swapping Capability - leave BAT0 value for now
                 }
-
                 Return (Local0)
             } // _BIX
         } // BATC
