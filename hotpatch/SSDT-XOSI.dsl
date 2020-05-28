@@ -35,6 +35,7 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "XOSI", 0)
             // "Windows 2018",       // "Windows 10, version 1803"
             // "Windows 2018.2",     // "Windows 10, version 1809"
             // "Windows 2019",       // "Windows 10, version 1903"
+            // "Windows 2020",       // "Windows 10, version 2004"
         }
         Return (Ones != Match (Local0, MEQ, Arg0, MTR, 0, 0))
     }
