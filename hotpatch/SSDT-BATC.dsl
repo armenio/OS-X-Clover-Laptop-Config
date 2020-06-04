@@ -148,12 +148,6 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                         // critical
                         Local0 [0] = 4
                     }
-                    ElseIf (Local4 == 3 || Local5 == 3)
-                    {
-                        // https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
-                        //  Page 689 - Table 10-333
-                        Local0 [0] = 3
-                    }
                     // if none of the above, just leave as BAT0 is
 
                     // _BST 1 - Battery Present Rate - add BAT0 and BAT1 values
