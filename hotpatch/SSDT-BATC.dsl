@@ -128,33 +128,34 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     // _BST 0 - Battery State - if one battery is charging, then charging, else discharging
                     Local4 = DerefOf (Local0 [0])
                     Local5 = DerefOf (Local1 [0])
-                    If (Local4 == 2 || Local5 == 2)
+                    If (Local4 != Local5)
                     {
-                        // 2 = charging
-                        Local0 [0] = 2
+                        If (Local4 == 2 || Local5 == 2)
+                        {
+                            // 2 = charging
+                            Local0 [0] = 2
+                        }
+                        ElseIf (Local4 == 5 || Local5 == 5)
+                        {
+                            // critical and discharging
+                            Local0 [0] = 5
+                        }
+                        ElseIf (Local4 == 4 || Local5 == 4)
+                        {
+                            // critical
+                            Local0 [0] = 4
+                        }
+                        ElseIf (Local4 == 3 || Local5 == 3)
+                        {
+                            Local0 [0] = 3
+                        }
+                        ElseIf (Local4 == 1 || Local5 == 1)
+                        {
+                            // 1 = discharging
+                            Local0 [0] = 1
+                        }
+                        // if none of the above, just leave as BAT0 is
                     }
-                    ElseIf (Local4 == 1 || Local5 == 1)
-                    {
-                        // 1 = discharging
-                        Local0 [0] = 1
-                    }
-                    ElseIf (Local4 == 5 || Local5 == 5)
-                    {
-                        // critical and discharging
-                        Local0 [0] = 5
-                    }
-                    ElseIf (Local4 == 4 || Local5 == 4)
-                    {
-                        // critical
-                        Local0 [0] = 4
-                    }
-                    ElseIf (Local4 == 3 || Local5 == 3)
-                    {
-                        // https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
-                        //  Page 689 - Table 10-333
-                        Local0 [0] = 3
-                    }
-                    // if none of the above, just leave as BAT0 is
 
                     // _BST 1 - Battery Present Rate - add BAT0 and BAT1 values
                     Local0 [1] = DerefOf (Local0 [1]) + DerefOf (Local1 [1])
