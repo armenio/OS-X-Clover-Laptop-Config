@@ -139,24 +139,53 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                 {
                     // _BIF 0 Power Unit - leave BAT0 value
                     // _BIF 1 Design Capacity - add BAT0 and BAT1 values
-                    Local0 [1] = DerefOf (Local0 [1]) + DerefOf (Local1 [1])
+                    Local4 = DerefOf (Local0 [1])
+                    Local5 = DerefOf (Local1 [1])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [1] = Local4 + Local5
+                    }
                     // _BIF 2 Last Full Charge Capacity - add BAT0 and BAT1 values
-                    Local0 [2] = DerefOf (Local0 [2]) + DerefOf (Local1 [2])
+                    Local4 = DerefOf (Local0 [2])
+                    Local5 = DerefOf (Local1 [2])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [2] = Local4 + Local5
+                    }
                     // _BIF 3 Battery Technology - leave BAT0 value
                     // _BIF 4 Design Voltage - average between BAT0 and BAT1 values
-                    Local0 [4] = (DerefOf (Local0 [4]) + DerefOf (Local1 [4])) / 2
+                    Local4 = DerefOf (Local0 [4])
+                    Local5 = DerefOf (Local1 [4])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [4] = (Local4 + Local5) / 2
+                    }
                     // _BIF 5 Design Capacity of Warning - add BAT0 and BAT1 values
                     Local0 [5] = DerefOf (Local0 [5]) + DerefOf (Local1 [5])
                     // _BIF 6 Design Capacity of Low - add BAT0 and BAT1 values
                     Local0 [6] = DerefOf (Local0 [6]) + DerefOf (Local1 [6])
                     // _BIF 7 Battery Capacity Granularity 1 - add BAT0 and BAT1 values
-                    // Local0 [7] = DerefOf (Local0 [7]) + DerefOf (Local1 [7])
+                    Local4 = DerefOf (Local0 [7])
+                    Local5 = DerefOf (Local1 [7])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [7] = Local4 + Local5
+                    }
                     // _BIF 8 Battery Capacity Granularity 2 - add BAT0 and BAT1 values
-                    // Local0 [8] = DerefOf (Local0 [8]) + DerefOf (Local1 [8])
-                    // _BIF 9 Model Number - leave BAT0 value for now
-                    // _BIF a Serial Number - leave BAT0 value for now
-                    // _BIF b Battery Type - leave BAT0 value for now
-                    // _BIF c OEM Information - leave BAT0 value for now
+                    Local4 = DerefOf (Local0 [8])
+                    Local5 = DerefOf (Local1 [8])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [8] = Local4 + Local5
+                    }
+                    // _BIF 9 Model Number - concatenate BAT0 and BAT1 values
+                    Local0 [0x09] = Concatenate (Concatenate (DerefOf (Local0 [0x09]), " / "), DerefOf (Local1 [0x09]))
+                    // _BIF a Serial Number - concatenate BAT0 and BAT1 values
+                    Local0 [0x0a] = Concatenate (Concatenate (DerefOf (Local0 [0x0a]), " / "), DerefOf (Local1 [0x0a]))
+                    // _BIF b Battery Type - concatenate BAT0 and BAT1 values
+                    Local0 [0x0b] = Concatenate (Concatenate (DerefOf (Local0 [0x0b]), " / "), DerefOf (Local1 [0x0b]))
+                    // _BIF c OEM Information - concatenate BAT0 and BAT1 values
+                    Local0 [0x0c] = Concatenate (Concatenate (DerefOf (Local0 [0x0c]), " / "), DerefOf (Local1 [0x0c]))
                 }
 
                 Return (Local0)
@@ -214,36 +243,80 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                     // _BIX 0 Revision - leave BAT0 value
                     // _BIX 1 Power Unit - leave BAT0 value
                     // _BIX 2 Design Capacity - add BAT0 and BAT1 values
-                    Local0 [2] = DerefOf (Local0 [2]) + DerefOf (Local1 [2])
+                    Local4 = DerefOf (Local0 [2])
+                    Local5 = DerefOf (Local1 [2])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [2] = Local4 + Local5
+                    }
                     // _BIX 3 Last Full Charge Capacity - add BAT0 and BAT1 values
-                    Local0 [3] = DerefOf (Local0 [3]) + DerefOf (Local1 [3])
+                    Local4 = DerefOf (Local0 [3])
+                    Local5 = DerefOf (Local1 [3])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [3] = Local4 + Local5
+                    }
                     // _BIX 4 Battery Technology - leave BAT0 value
                     // _BIX 5 Design Voltage - average between BAT0 and BAT1 values
-                    Local0 [5] = (DerefOf (Local0 [5]) + DerefOf (Local1 [5])) / 2
+                    Local4 = DerefOf (Local0 [5])
+                    Local5 = DerefOf (Local1 [5])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [5] = (Local4 + Local5) / 2
+                    }
                     // _BIX 6 Design Capacity of Warning - add BAT0 and BAT1 values
                     Local0 [6] = DerefOf (Local0 [6]) + DerefOf (Local1 [6])
                     // _BIX 7 Design Capacity of Low - add BAT0 and BAT1 values
                     Local0 [7] = DerefOf (Local0 [7]) + DerefOf (Local1 [7])
                     // _BIX 8 Cycle Count - average between BAT0 and BAT1 values
-                    Local0 [8] = (DerefOf (Local0 [8]) + DerefOf (Local1 [8])) / 2
+                    Local4 = DerefOf (Local0 [8])
+                    Local5 = DerefOf (Local1 [8])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [8] = (Local4 + Local5) / 2
+                    }
                     // _BIX 9 Measurement Accuracy - average between BAT0 and BAT1 values
                     Local0 [9] = (DerefOf (Local0 [9]) + DerefOf (Local1 [9])) / 2
                     // _BIX 0xa Max Sampling Time - average between BAT0 and BAT1 values
-                    // Local0 [0xa] = (DerefOf (Local0 [0xa]) + DerefOf (Local1 [0xa])) / 2
+                    Local4 = DerefOf (Local0 [0xa])
+                    Local5 = DerefOf (Local1 [0xa])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [0xa] = (Local4 + Local5) / 2
+                    }
                     // _BIX 0xb Min Sampling Time - average between BAT0 and BAT1 values
-                    // Local0 [0xb] = (DerefOf (Local0 [0xb]) + DerefOf (Local1 [0xb])) / 2
+                    Local4 = DerefOf (Local0 [0xb])
+                    Local5 = DerefOf (Local1 [0xb])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [0xb] = (Local4 + Local5) / 2
+                    }
                     // _BIX 0xc Max Averaging Interval - average between BAT0 and BAT1 values
                     Local0 [0xc] = (DerefOf (Local0 [0xc]) + DerefOf (Local1 [0xc])) / 2
                     // _BIX 0xd Min Averaging Interval - average between BAT0 and BAT1 values
                     Local0 [0xd] = (DerefOf (Local0 [0xd]) + DerefOf (Local1 [0xd])) / 2
                     // _BIX 0xe Battery Capacity Granularity 1 - add BAT0 and BAT1 values
-                    // Local0 [0xe] = DerefOf (Local0 [0xe]) + DerefOf (Local1 [0xe])
+                    Local4 = DerefOf (Local0 [0xe])
+                    Local5 = DerefOf (Local1 [0xe])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [0xe] = Local4 + Local5
+                    }
                     // _BIX 0xf Battery Capacity Granularity 2 - add BAT0 and BAT1 values
-                    // Local0 [0xf] = DerefOf (Local0 [0xf]) + DerefOf (Local1 [0xf])
-                    // _BIX 10 Model Number - leave BAT0 value for now
-                    // _BIX 11 Serial Number - leave BAT0 value for now
-                    // _BIX 12 Battery Type - leave BAT0 value for now
-                    // _BIX 13 OEM Information - leave BAT0 value for now
+                    Local4 = DerefOf (Local0 [0xf])
+                    Local5 = DerefOf (Local1 [0xf])
+                    If (0xffffffff != Local4 && 0xffffffff != Local5)
+                    {
+                        Local0 [0xf] = Local4 + Local5
+                    }
+                    // _BIX 10 Model Number - concatenate BAT0 and BAT1 values
+                    Local0 [0x10] = Concatenate (Concatenate (DerefOf (Local0 [0x10]), " / "), DerefOf (Local1 [0x10]))
+                    // _BIX 11 Serial Number - concatenate BAT0 and BAT1 values
+                    Local0 [0x11] = Concatenate (Concatenate (DerefOf (Local0 [0x11]), " / "), DerefOf (Local1 [0x11]))
+                    // _BIX 12 Battery Type - concatenate BAT0 and BAT1 values
+                    Local0 [0x12] = Concatenate (Concatenate (DerefOf (Local0 [0x12]), " / "), DerefOf (Local1 [0x12]))
+                    // _BIX 13 OEM Information - concatenate BAT0 and BAT1 values
+                    Local0 [0x13] = Concatenate (Concatenate (DerefOf (Local0 [0x13]), " / "), DerefOf (Local1 [0x13]))
                     // _BIX 14 Battery Swapping Capability - leave BAT0 value for now
                 }
                 Return (Local0)
@@ -296,24 +369,24 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "BATC", 0)
                             // 2 = charging
                             Local0 [0] = 2
                         }
-                        ElseIf (Local4 == 5 || Local5 == 5)
+                        ElseIf (Local4 == 1 || Local5 == 1)
                         {
-                            // critical and discharging
-                            Local0 [0] = 5
+                            // 1 = discharging
+                            Local0 [0] = 1
+                        }
+                        ElseIf (Local4 == 3 || Local5 == 3)
+                        {
+                            Local0 [0] = 3
                         }
                         ElseIf (Local4 == 4 || Local5 == 4)
                         {
                             // critical
                             Local0 [0] = 4
                         }
-                        ElseIf (Local4 == 3 || Local5 == 3)
+                        ElseIf (Local4 == 5 || Local5 == 5)
                         {
-                            Local0 [0] = 3
-                        }
-                        ElseIf (Local4 == 1 || Local5 == 1)
-                        {
-                            // 1 = discharging
-                            Local0 [0] = 1
+                            // critical and discharging
+                            Local0 [0] = 5
                         }
                         // if none of the above, just leave as BAT0 is
                     }
