@@ -36,6 +36,7 @@
 // detection of battery removal/adding will not work correctly.
 //
 // You can Clover hotpatch (config.plist/ACPI/DSDT/Patches) your battery code.
+// If you are using OpenCore (config.plist/ACPI/Patch) instead.
 //
 // For example, Notify (BAT0, 0x80) is
 //   86 42 41 54 30 0A 80
