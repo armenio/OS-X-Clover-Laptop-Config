@@ -29,7 +29,9 @@ DefinitionBlock ("", "SSDT", 2, "HACK", "PS2K", 0)
                 {
                     Package (){}, 
                     "e01d=5e", // RightCtrl=Slash
-                }
+                },
+                "RemapPrntScr", ">y",
+                "Swap command and option", ">y",
             },
             "Synaptics TouchPad", Package ()
             {
